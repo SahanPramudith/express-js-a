@@ -1,8 +1,10 @@
 const express = require('express')
+import userRouter from './src/route/user.mjs'
+import productRouter from './src/route/product.mjs'
+
 const app = express()
 const port = 3000
-import productRouter from './src/route/product.mjs'
-import userRouter from './src/route/user.mjs'
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
