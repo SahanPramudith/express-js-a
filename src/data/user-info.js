@@ -1,4 +1,4 @@
-const userInfo = [
+export const userInfo = [
     {
         name: "John Doe",
         address: "123 Main St, Anytown, USA",
@@ -15,13 +15,6 @@ const userInfo = [
         tpno: "555-9012"
     }
 ];
-
-module.exports = userInfo;
-
-
-
-
-
 
 
 
