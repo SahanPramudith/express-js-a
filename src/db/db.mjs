@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../generated/prisma/index.js';
 
-const db=new PrismaClient();
+const DB = new PrismaClient();
 
-export default db;
+export default DB;
