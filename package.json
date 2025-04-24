@@ -11,6 +11,7 @@
   "author": "sahan",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^6.6.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
@@ -18,5 +19,3 @@
     "prisma": "^6.6.0"
   }
 }
-
-
