@@ -47,7 +47,6 @@ userRouter.put('/api/update-user/:id', async (req, res) => {
     if (id === undefined || id === null) {
         return res.status(400).json({ msg: "User ID is required" });
     }
-
     try {
         const updateUser = await DB.User.update({
             where: {
@@ -66,5 +65,29 @@ userRouter.put('/api/update-user/:id', async (req, res) => {
         });
     }
 });
+
+userRouter.delete('/api/delete-user/:id',async(req,res)=>{
+    const { id } = req.params;
+    
+    if (id === undefined || id === null) {
+        return res.status(400).json({ msg: "User ID is required" });
+    }
+    try {
+        const deletedUser = await DB.User.delete({
+            where: {
+                id: Number(id),
+            },
+        });
+        return res.status(200).json({
+            msg: "User deleted successfully",
+            data: deletedUser,
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            error: "Internal server error",
+        });
+    }
+})
 
 export default userRouter;
