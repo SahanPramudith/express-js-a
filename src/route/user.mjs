@@ -5,7 +5,7 @@ import { userInfo } from "../data/user-info.js";
 const userRouter = express.Router();
 
 // Define the route for getting user information
-userRouter.get('/api/user',async (_, res) => {
+userRouter.get('/api/user', async (_, res) => {
 
     try {
         const allUsers = await DB.User.findMany();
@@ -38,6 +38,33 @@ userRouter.post('/api/create-user', async (req, res) => {
         return res.status(500).json({ error: "Internal server error" });
     }
 
+});
+
+userRouter.put('/api/update-user/:id', async (req, res) => {
+    const { id } = req.params;
+    const userdata = req.body;
+
+    if (id === undefined || id === null) {
+        return res.status(400).json({ msg: "User ID is required" });
+    }
+
+    try {
+        const updateUser = await DB.User.update({
+            where: {
+                id: Number(id),
+            },
+            data: userdata,
+        });
+        return res.status(200).json({
+            msg: "User information updated successfully",
+            data: updateUser,
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            error: "Internal server error",
+        });
+    }
 });
 
 export default userRouter;
