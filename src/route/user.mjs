@@ -5,7 +5,22 @@ import { userInfo } from "../data/user-info.js";
 const userRouter = express.Router();
 
 // Define the route for getting user information
-userRouter.get('/api/user', (_, res) => {
+userRouter.get('/api/user',async (_, res) => {
+
+    try {
+        const allUsers = await DB.User.findMany();
+        res.status(200).json({
+            msg: "User information retrieved successfully",
+            data: allUsers,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: "Internal server error",
+            error: error.message
+        });
+    }
+
     res.status(200).json({
         msg: "User information retrieved successfully",
         data: userInfo
